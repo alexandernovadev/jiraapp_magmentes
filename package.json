@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cleanmod":"rm -rf node_modules yarn.lock yarn-error.lock && yarn"
+    "cleanmod":"rm -rf node_modules yarn.lock yarn-error.lock && yarn",
+    "export": "next export"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
