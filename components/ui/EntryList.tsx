@@ -1,39 +1,39 @@
-import { FC, useContext, useMemo, DragEvent } from "react";
-import { List, Paper } from "@mui/material";
+import { FC, useContext, useMemo, DragEvent } from "react"
+import { List, Paper } from "@mui/material"
 
-import { EntriesContext } from "../../context/entries";
-import { UIContext } from "../../context/ui";
+import { EntriesContext } from "../../context/entries"
+import { UIContext } from "../../context/ui"
 
-import { EntryStatus } from "../../interfaces";
-import { EntryCard } from "./";
+import { EntryStatus } from "../../interfaces"
+import { EntryCard } from "./"
 
-import styles from "./EntryList.module.css";
+import styles from "./EntryList.module.css"
 
 interface Props {
-  status: EntryStatus;
+  status: EntryStatus
 }
 
-export const EntryList: FC<Props> = ({ status }) => {
-  const { entries, updateEntry } = useContext(EntriesContext);
-  const { isDragging, endDragging } = useContext(UIContext);
+export const EntryList = ({ status }: Props) => {
+  const { entries, updateEntry } = useContext(EntriesContext)
+  const { isDragging, endDragging } = useContext(UIContext)
 
   const entriesByStatus = useMemo(
     () => entries.filter((entry) => entry.status === status),
     [entries, status]
-  );
+  )
 
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   const onDropEntry = (event: DragEvent<HTMLDivElement>) => {
-    const id = event.dataTransfer.getData("text");
+    const id = event.dataTransfer.getData("text")
 
-    const entry = entries.find((e) => e._id === id)!;
-    entry.status = status;
-    updateEntry(entry);
-    endDragging();
-  };
+    const entry = entries.find((e) => e._id === id)!
+    entry.status = status
+    updateEntry(entry)
+    endDragging()
+  }
 
   return (
     //   TODO: aquí haremos drop
@@ -57,5 +57,5 @@ export const EntryList: FC<Props> = ({ status }) => {
         </List>
       </Paper>
     </div>
-  );
-};
+  )
+}
